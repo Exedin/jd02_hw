@@ -1,5 +1,5 @@
-.maven1/maven-quickstart/target/
-.idea
+/maven1/maven-quickstart/target/
+/maven1/maven-quickstart/.idea
 *.iml
 # Compiled class file
 *.class
