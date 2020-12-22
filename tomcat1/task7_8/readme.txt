@@ -1,14 +1,14 @@
-task 7:
-1) для установки приложения на сервер tomcat добавим приложение в каталог CATALINA_HOME\webapps
-2) т.к. в tomcat существуют настройки по умолчанию, приложения которые запускаются через хост localhost:8080 и установлены в папку CATALINA_HOME\webapps обладают параметром unpackWARs="true" который отвечает за автоматическую распаковку приложения при запуске сервером приложений
-	выполним запров браузере http://localhost:8080/tomcat-quickstart/echo
-	получим: Hello from Echo servlet!Tue Dec 22 19:26:52 MSK 2020
-	Приложение работает.
-
+п»їtask 7:
+1) РґР»СЏ СѓСЃС‚Р°РЅРѕРІРєРё РїСЂРёР»РѕР¶РµРЅРёСЏ РЅР° СЃРµСЂРІРµСЂ tomcat РґРѕР±Р°РІРёРј РїСЂРёР»РѕР¶РµРЅРёРµ РІ РєР°С‚Р°Р»РѕРі CATALINA_HOME\webapps
+2) С‚.Рє. РІ tomcat СЃСѓС‰РµСЃС‚РІСѓСЋС‚ РЅР°СЃС‚СЂРѕР№РєРё РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ, РїСЂРёР»РѕР¶РµРЅРёСЏ РєРѕС‚РѕСЂС‹Рµ Р·Р°РїСѓСЃРєР°СЋС‚СЃСЏ С‡РµСЂРµР· С…РѕСЃС‚ localhost:8080 Рё СѓСЃС‚Р°РЅРѕРІР»РµРЅС‹ РІ РїР°РїРєСѓ CATALINA_HOME\webapps РѕР±Р»Р°РґР°СЋС‚ РїР°СЂР°РјРµС‚СЂРѕРј unpackWARs="true" РєРѕС‚РѕСЂС‹Р№ РѕС‚РІРµС‡Р°РµС‚ Р·Р° Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєСѓСЋ СЂР°СЃРїР°РєРѕРІРєСѓ РїСЂРёР»РѕР¶РµРЅРёСЏ РїСЂРё Р·Р°РїСѓСЃРєРµ СЃРµСЂРІРµСЂРѕРј РїСЂРёР»РѕР¶РµРЅРёР№
+	РІС‹РїРѕР»РЅРёРј Р·Р°РїСЂРѕРІ Р±СЂР°СѓР·РµСЂРµ http://localhost:8080/tomcat-quickstart/echo
+	РїРѕР»СѓС‡РёРј: Hello from Echo servlet!Tue Dec 22 19:26:52 MSK 2020
+	РџСЂРёР»РѕР¶РµРЅРёРµ СЂР°Р±РѕС‚Р°РµС‚.
+=========================
 
 
 task 8:
-добавим плагин в фалй pom.xml
+РґРѕР±Р°РІРёРј РїР»Р°РіРёРЅ РІ С„Р°Р»Р№ pom.xml
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -21,7 +21,7 @@ task 8:
                 </configuration>
             </plugin>
 
-запустим командную строку в папке с файлом pom.xml
+Р·Р°РїСѓСЃС‚РёРј РєРѕРјР°РЅРґРЅСѓСЋ СЃС‚СЂРѕРєСѓ РІ РїР°РїРєРµ СЃ С„Р°Р№Р»РѕРј pom.xml
 mvn tomcat:info
 [INFO] Scanning for projects...
 [INFO]
@@ -82,7 +82,7 @@ mvn tomcat:redeploy
 [INFO]
 [INFO] --- tomcat-maven-plugin:1.1:redeploy (default-cli) @ tomcat-quickstart ---
 [INFO] Deploying war to http://localhost:8080/tomcat-quickstart
-[INFO] OK - Приложение успешно развёрнуто в контекстном пути [/tomcat-quickstart]
+[INFO] OK - РџСЂРёР»РѕР¶РµРЅРёРµ СѓСЃРїРµС€РЅРѕ СЂР°Р·РІС‘СЂРЅСѓС‚Рѕ РІ РєРѕРЅС‚РµРєСЃС‚РЅРѕРј РїСѓС‚Рё [/tomcat-quickstart]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
@@ -99,7 +99,7 @@ mvn tomcat:undeploy
 [INFO]
 [INFO] --- tomcat-maven-plugin:1.1:undeploy (default-cli) @ tomcat-quickstart ---
 [INFO] Undeploying application at http://localhost:8080/tomcat-quickstart
-[INFO] OK - Удалено приложение по пути контекста [/tomcat-quickstart]
+[INFO] OK - РЈРґР°Р»РµРЅРѕ РїСЂРёР»РѕР¶РµРЅРёРµ РїРѕ РїСѓС‚Рё РєРѕРЅС‚РµРєСЃС‚Р° [/tomcat-quickstart]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
@@ -116,7 +116,7 @@ mvn tomcat:list
 [INFO]
 [INFO] --- tomcat-maven-plugin:1.1:list (default-cli) @ tomcat-quickstart ---
 [INFO] Listing applications at http://localhost:8080/manager/text
-[INFO] OK - Список приложений для виртуального хоста [localhost]
+[INFO] OK - РЎРїРёСЃРѕРє РїСЂРёР»РѕР¶РµРЅРёР№ РґР»СЏ РІРёСЂС‚СѓР°Р»СЊРЅРѕРіРѕ С…РѕСЃС‚Р° [localhost]
 [INFO] /:running:0:ROOT
 [INFO] /examples:running:0:examples
 [INFO] /testWebApp-1.0-SNAPSHOT:running:0:testWebApp-1.0-SNAPSHOT
@@ -168,7 +168,7 @@ mvn tomcat:deploy
 [INFO]
 [INFO] --- tomcat-maven-plugin:1.1:deploy (default-cli) @ tomcat-quickstart ---
 [INFO] Deploying war to http://localhost:8080/tomcat-quickstart
-[INFO] OK - Приложение успешно развёрнуто в контекстном пути [/tomcat-quickstart]
+[INFO] OK - РџСЂРёР»РѕР¶РµРЅРёРµ СѓСЃРїРµС€РЅРѕ СЂР°Р·РІС‘СЂРЅСѓС‚Рѕ РІ РєРѕРЅС‚РµРєСЃС‚РЅРѕРј РїСѓС‚Рё [/tomcat-quickstart]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
@@ -176,7 +176,7 @@ mvn tomcat:deploy
 [INFO] Finished at: 2020-12-22T20:47:42+03:00
 [INFO] ------------------------------------------------------------------------
 
-для сравнения добавим плагин 
+РґР»СЏ СЃСЂР°РІРЅРµРЅРёСЏ РґРѕР±Р°РІРёРј РїР»Р°РіРёРЅ 
            <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat-maven-plugin</artifactId>
@@ -197,7 +197,7 @@ mvn tomcat7:undeploy
 [INFO]
 [INFO] --- tomcat7-maven-plugin:2.2:undeploy (default-cli) @ tomcat-quickstart ---
 [INFO] Undeploying application at http://localhost:8080/tomcat-quickstart
-[INFO] OK - РЈРґР°Р»РµРЅРѕ РїСЂРёР»РѕР¶РµРЅРёРµ РїРѕ РїСѓС‚Рё РєРѕРЅС‚РµРєСЃС‚Р° [/tomcat-quickstart]
+[INFO] OK - Р Р€Р Т‘Р В°Р В»Р ВµР Р…Р С• Р С—РЎР‚Р С‘Р В»Р С•Р В¶Р ВµР Р…Р С‘Р Вµ Р С—Р С• Р С—РЎС“РЎвЂљР С‘ Р С”Р С•Р Р…РЎвЂљР ВµР С”РЎРѓРЎвЂљР В° [/tomcat-quickstart]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
@@ -242,7 +242,7 @@ mvn tomcat:deploy
 [INFO]
 [INFO] --- tomcat-maven-plugin:1.1:deploy (default-cli) @ tomcat-quickstart ---
 [INFO] Deploying war to http://localhost:8080/tomcat-quickstart
-[INFO] OK - Приложение успешно развёрнуто в контекстном пути [/tomcat-quickstart]
+[INFO] OK - РџСЂРёР»РѕР¶РµРЅРёРµ СѓСЃРїРµС€РЅРѕ СЂР°Р·РІС‘СЂРЅСѓС‚Рѕ РІ РєРѕРЅС‚РµРєСЃС‚РЅРѕРј РїСѓС‚Рё [/tomcat-quickstart]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
@@ -250,7 +250,7 @@ mvn tomcat:deploy
 [INFO] Finished at: 2020-12-22T20:52:31+03:00
 [INFO] ------------------------------------------------------------------------
 
-проверим список доступных команд для данного плагина
+РїСЂРѕРІРµСЂРёРј СЃРїРёСЃРѕРє РґРѕСЃС‚СѓРїРЅС‹С… РєРѕРјР°РЅРґ РґР»СЏ РґР°РЅРЅРѕРіРѕ РїР»Р°РіРёРЅР°
 mvn tomcat7:help
 [INFO] Scanning for projects...
 [INFO]
