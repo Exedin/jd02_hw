@@ -5,6 +5,8 @@ task 7:
 	получим: Hello from Echo servlet!Tue Dec 22 19:26:52 MSK 2020
 	Приложение работает.
 
+
+
 task 8:
 добавим плагин в фалй pom.xml
 
