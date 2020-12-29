@@ -2,22 +2,22 @@ package it.academy;
 
 import java.sql.*;
 
-public class App
+public class AppTask4Old
 {
-//    static String [] args=new String [] {"10, '2020-5-05', 1, 13555", "11, '2011-5-11', 2, 18555"};
-
 
     public static void main( String[] args )
     {
         for (String arg : args) {
             System.out.println(arg.toString());
         }
+        String s= "insert into expenses values ("+args[0] + ", '"+args[1] + "', " + args[2] + ", " + args[3] +");";
+        System.out.println(s);
 
-        update("insert into expenses values ("+args[0]+");");
+        update(s);
 
         extracted();
 
-//        delete();
+//        delete("delete from expenses where num="+args[0]+";");
 
 
     }
@@ -28,8 +28,7 @@ public class App
             String dbURL = "jdbc:mysql://localhost:3306/ListExpenses?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             final Connection connection = DriverManager.getConnection(dbURL, "root", "root");
             final Statement statement = connection.createStatement();
-            String update = s;
-            final int resultSet = statement.executeUpdate(update);
+            final int executeUpdate = statement.executeUpdate(s);
 
             statement.close();
             connection.close();
@@ -62,13 +61,13 @@ public class App
         }
     }
 
-    private static void delete() {
+    private static void delete(String delete) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String dbURL="jdbc:mysql://localhost:3306/ListExpenses?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             final Connection connection = DriverManager.getConnection(dbURL, "root", "root");
             final Statement statement = connection.createStatement();
-            String delete="delete from expenses where num=10;";
+
             final int resultSet = statement.executeUpdate(delete);
 
             statement.close();
