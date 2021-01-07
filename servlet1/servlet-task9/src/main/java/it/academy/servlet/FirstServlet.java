@@ -10,7 +10,7 @@ public class FirstServlet extends HttpServlet {
     private static final long serialVersionUID=1l;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected synchronized void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final PrintWriter out = resp.getWriter();
         final String realPath = getServletContext().getRealPath("/count.txt");
         final String s;
