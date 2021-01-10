@@ -6,11 +6,11 @@ import java.util.Objects;
 
 public class Expense implements Serializable {
     private int num;
-    private Date paydate;
+    private String paydate;
     private int receiver;
     private double value;
 
-    private Expense() {
+    public Expense() {
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Expense implements Serializable {
         this.num = num;
     }
 
-    public void setPaydate(Date paydate) {
+    public void setPaydate(String paydate) {
         this.paydate = paydate;
     }
 
@@ -56,7 +56,7 @@ public class Expense implements Serializable {
         return num;
     }
 
-    public Date getPaydate() {
+    public String getPaydate() {
         return paydate;
     }
 

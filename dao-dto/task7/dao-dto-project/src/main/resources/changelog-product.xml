@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="trukhanovich">
+        <sql>
+            create database if not exists ListExpenses;
+            USE ListExpenses;
+            create table if not exists expenses  (
+            num int not null primary key,
+            paydate date not null,
+            receiver int not null,
+            value dec not null);
+            create table if not exists receivers (
+            num int not null primary key,
+            name varchar (255) not null);
+            ALTER TABLE `listexpenses`.`receivers`
+            CHANGE COLUMN `name` `name` VARCHAR(255) CHARACTER SET 'utf8' NOT NULL ;
+            select expenses.num, paydate, name, value from expenses,receivers where receiver=receivers.num and value>10000 Order by expenses.num;
+            SET SQL_SAFE_UPDATES = 0;
+
+        </sql>
+    </changeSet>
+<!--    <changeSet id="2" author="trukhanovich">-->
+<!--        <sql>-->
+<!--            insert into ListExpenses.expenses values (1, '2011-5-10', 1, 20000);-->
+<!--            insert into ListExpenses.expenses values (2, '2011-5-10', 2, 94200);-->
+<!--            insert into ListExpenses.expenses values (3, '2011-5-11', 3, 10000);-->
+<!--            insert into ListExpenses.expenses values (4, '2011-5-11', 2, 12950);-->
+<!--            insert into ListExpenses.expenses values (5, '2011-5-26', 3, 150000);-->
+<!--            insert into ListExpenses.expenses values (6, '2011-5-26', 1, 5000);-->
+<!--            insert into ListExpenses.expenses values (7, '2011-5-27', 2, 40000);-->
+<!--        </sql>-->
+<!--    </changeSet>-->
+<!--    <changeSet id="3" author="trukhanovich">-->
+<!--        <sql>-->
+<!--            insert into ListExpenses.receivers values (1, 'Интернет-провайдер "Соло"');-->
+<!--            insert into ListExpenses.receivers values (2, 'Гимермаркет "Корона"');-->
+<!--            insert into ListExpenses.receivers values (3, 'МТС');-->
+<!--        </sql>-->
+<!--    </changeSet>-->
+</databaseChangeLog>

@@ -115,9 +115,9 @@ public class AppTask5
             Class.forName("com.mysql.cj.jdbc.Driver");
             String dbURL="jdbc:mysql://localhost:3306/ListExpenses?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             final Connection connection = DriverManager.getConnection(dbURL, "root", "root");
-            final Statement statement = connection.createStatement();
             String query="SELECT expenses.num, paydate, name, value from expenses,receivers where receiver=receivers.num Order by expenses.num;";
-            final ResultSet resultSet = statement.executeQuery(query);
+            final PreparedStatement statement = connection.prepareStatement(query);
+            final ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 int num=resultSet.getInt(1);
                 Date date=resultSet.getDate(2);
