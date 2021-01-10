@@ -19,9 +19,6 @@ public class FirstServlet extends HttpServlet {
             String userName= getServletContext().getInitParameter("database.user");
             String userPassword= getServletContext().getInitParameter("database.password");
             final PrintWriter out = resp.getWriter();
-//            out.println(dbURL);
-//            out.println(userName);
-//            out.println(userPassword);
             Connection connection= DriverManager.getConnection(dbURL, userName, userPassword);
             final Statement statement = connection.createStatement();
             String query="SELECT expenses.num, paydate, name, value from expenses,receivers where receiver=receivers.num Order by expenses.num;";

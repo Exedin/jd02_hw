@@ -2,7 +2,6 @@ package it.academy.date;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DaoImpl implements Dao {
 

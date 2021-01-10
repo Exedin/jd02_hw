@@ -15,7 +15,6 @@ public class FirstServlet extends HttpServlet {
 
     @Override
     protected synchronized void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        final PrintWriter out = resp.getWriter();
         final String realPath = getServletContext().getRealPath("/count.txt");
         final String s;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(realPath))) {
@@ -23,9 +22,6 @@ public class FirstServlet extends HttpServlet {
         }
         int count=Integer.parseInt(s)+1;
         String num=Integer.toString(count);
-//        out.println("<html lang=\"en\"><head><title>First Servlet</title></head>");
-//        out.println("<body><h1>This is your visit number " + count +  "</h1>");
-//        out.println("</body></html>");
         resp.setContentType("image/jpeg");
         final BufferedImage image = new BufferedImage(650, 200, BufferedImage.TYPE_INT_BGR);
         final Graphics2D graphics = image.createGraphics();
