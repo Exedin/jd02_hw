@@ -95,11 +95,65 @@ public class DaoImpl implements Dao {
 
     @Override
     public int addReceiver(Receiver receiver) {
-        return 0;
+        int num=chooseFreeNumReceiver();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "insert into receivers values (?, ?);")) {
+
+            preparedStatement.setInt(1, num);
+            preparedStatement.setString(2, receiver.getName());
+
+            System.out.println("create=" + preparedStatement.executeUpdate());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return num;
     }
 
     @Override
     public int addExpense(Expense expense) {
-        return 0;
+        int num=chooseFreeNumExpense();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "insert into expenses values (?, ?, ?, ?);")) {
+            preparedStatement.setInt(1, num);
+            preparedStatement.setString(2, expense.getPaydate());
+            preparedStatement.setInt(3, expense.getReceiver());
+            preparedStatement.setDouble(4, expense.getValue());
+            System.out.println("create=" + preparedStatement.executeUpdate());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return num;
+        }
+
+    private int chooseFreeNumExpense() {
+        int num=0;
+        try {
+            final Statement statement = connection.createStatement();
+            String query="SELECT num from expenses Order by num;";
+            final ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                num=resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return num+1;
+    }
+    private int chooseFreeNumReceiver() {
+        int num=0;
+        try {
+            final Statement statement = connection.createStatement();
+            String query="SELECT num from receivers Order by num;";
+            final ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                num=resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return num+1;
     }
 }
