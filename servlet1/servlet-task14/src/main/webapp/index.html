@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Home page</title>
+</head>
+<body>
+
+<h1>New receiver form</h1>
+<p>Enter receiver</p>
+
+
+<form action="/dao-dto-project/new-receiver" method="post">
+<!--    <label for="rnum">Number or receiver:</label><br>-->
+<!--    <input type="text" id="rnum" name="receiver.num" value=""><br>-->
+    <label for="rname">Receiver name:</label><br>
+    <input type="text" id="rname" name="receiver.name" value=""><br>
+    <br>
+    <input type="submit" value="Submit">
+    <br>
+</form>
+
+<h1>New expense form</h1>
+<p>Enter expense</p>
+<form action="/dao-dto-project/new-expense" method="post">
+<!--    <label for="enum">Number of expense:</label><br>-->
+<!--    <input type="text" id="enum" name="expense.num" value=""><br>-->
+    <label for="edate">Paydate:</label><br>
+    <input type="text" id="edate" name="expense.date" value=""><br>
+    <label for="ereceiver">Receiver:</label><br>
+    <input type="text" id="ereceiver" name="expense.receiver" value=""><br>
+    <label for="evalue">Value:</label><br>
+    <input type="text" id="evalue" name="expense.value" value=""><br>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

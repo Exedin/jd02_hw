@@ -40,7 +40,6 @@
   </dependencies>
 
   <build>
-    <finalName>servlet-task8</finalName>
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
@@ -89,6 +88,26 @@
             <username>tomcat</username>
             <password>tomcat</password>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.liquibase</groupId>
+          <artifactId>liquibase-maven-plugin</artifactId>
+          <version>3.5.3</version>
+          <executions>
+            <execution>
+              <phase>process-resources</phase>
+              <goals>
+                <goal>update</goal>
+              </goals>
+              <configuration>
+                <changeLogFile>src/main/resources/changelog-product.xml</changeLogFile>
+                <driver>com.mysql.cj.jdbc.Driver</driver>
+                <url>jdbc:mysql://localhost:3306/listexpenses?serverTimezone=UTC&amp;createDatabaseIfNotExist=true&amp;useUnicode=true</url>
+                <username>root</username>
+                <password>root</password>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
   </build>

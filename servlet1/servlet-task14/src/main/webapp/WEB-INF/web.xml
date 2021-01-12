@@ -3,31 +3,9 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+  <display-name>Archetype Created Web Application</display-name>
   <context-param>
     <param-name>database.name</param-name>
     <param-value>MYSQL</param-value>
   </context-param>
-  <context-param>
-    <param-name>database.url</param-name>
-    <param-value>jdbc:mysql://localhost:3306/ListExpenses?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</param-value>
-  </context-param>
-  <context-param>
-    <param-name>database.user</param-name>
-    <param-value>root</param-value>
-  </context-param>
-  <context-param>
-    <param-name>database.password</param-name>
-    <param-value>root</param-value>
-  </context-param>
-
-
-  <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-    <servlet-name>FirstServlet</servlet-name>
-    <servlet-class>it.academy.servlet.FirstServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FirstServlet</servlet-name>
-    <url-pattern>/test</url-pattern>
-  </servlet-mapping>
 </web-app>

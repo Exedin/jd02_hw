@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="trukhanovich">
+        <sql>
+            use listexpenses;
+
+            create table if not exists expenses (
+            num int primary key,
+            paydate date,
+            receiver int,
+            value dec
+            );
+            create table if not exists receivers (
+            num int primary key,
+            name varchar(255) character set 'utf8' COLLATE utf8_unicode_ci
+            );
+        </sql>
+    </changeSet>
+<!--    <changeSet id="2" author="trukhanovich">-->
+<!--        <sql>-->
+<!--            insert into expenses values (1, '2011-5-10', 1, 2000.0);-->
+<!--            insert into expenses (num, paydate, value, receiver) values (2, '2011-5-10', 94200.0, 2);-->
+<!--            insert into expenses (num, paydate, value, receiver) values (3, '2011-5-11', 10000.0, 3);-->
+<!--            insert into expenses (num, paydate, value, receiver) values (4, '2011-5-11', 12950.0, 2);-->
+<!--            insert into receivers values (1, 'Интернет-провайдер "Соло"');-->
+<!--            insert into receivers values (2, 'Гипермаркет "Корона"');-->
+<!--            insert into receivers values (3, 'МТС');-->
+<!--        </sql>-->
+<!--    </changeSet>-->
+</databaseChangeLog>
