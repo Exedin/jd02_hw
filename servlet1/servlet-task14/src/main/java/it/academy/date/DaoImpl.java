@@ -54,7 +54,7 @@ public class DaoImpl implements Dao {
     public Expense getExpense(int num) {
         Expense expense= new Expense();
         try {
-            String query="select expenses.num, paydate, name, value from expenses,receivers where receiver=receivers.num Order by expenses.num;";
+            String query="select expenses.num, paydate, name, value from expenses,receivers where receiver=receivers.num and expenses.num=?;";
             final PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, Integer.toString(num));
             final ResultSet resultSet = preparedStatement.executeQuery();

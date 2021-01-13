@@ -20,15 +20,15 @@
             );
         </sql>
     </changeSet>
-<!--    <changeSet id="2" author="trukhanovich">-->
-<!--        <sql>-->
-<!--            insert into expenses values (1, '2011-5-10', 1, 2000.0);-->
-<!--            insert into expenses (num, paydate, value, receiver) values (2, '2011-5-10', 94200.0, 2);-->
-<!--            insert into expenses (num, paydate, value, receiver) values (3, '2011-5-11', 10000.0, 3);-->
-<!--            insert into expenses (num, paydate, value, receiver) values (4, '2011-5-11', 12950.0, 2);-->
-<!--            insert into receivers values (1, 'Интернет-провайдер "Соло"');-->
-<!--            insert into receivers values (2, 'Гипермаркет "Корона"');-->
-<!--            insert into receivers values (3, 'МТС');-->
-<!--        </sql>-->
-<!--    </changeSet>-->
+    <changeSet id="2" author="trukhanovich">
+        <sql>
+            insert into expenses values (1, '2011-5-10', 1, 2000.0);
+            insert into expenses (num, paydate, value, receiver) values (2, '2011-5-10', 94200.0, 2);
+            insert into expenses (num, paydate, value, receiver) values (3, '2011-5-11', 10000.0, 3);
+            insert into expenses (num, paydate, value, receiver) values (4, '2011-5-11', 12950.0, 2);
+            insert into receivers values (1, 'Интернет-провайдер "Соло"');
+            insert into receivers values (2, 'Гипермаркет "Корона"');
+            insert into receivers values (3, 'МТС');
+        </sql>
+    </changeSet>
 </databaseChangeLog>
