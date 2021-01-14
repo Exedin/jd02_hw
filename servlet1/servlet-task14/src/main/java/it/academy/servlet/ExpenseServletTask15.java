@@ -1,6 +1,9 @@
 package it.academy.servlet;
 
-import it.academy.date.*;
+import it.academy.date.Dao;
+import it.academy.date.DaoFactory;
+import it.academy.date.DatabaseName;
+import it.academy.date.Expense;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -15,8 +18,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@WebServlet(name = "ExpenseServlet", urlPatterns = "/expense")
-public class ExpenseServlet extends HttpServlet {
+@WebServlet(name = "ExpenseServletTask15", urlPatterns = "/expense-task15")
+public class ExpenseServletTask15 extends HttpServlet {
         DaoFactory daoFactory;
 
     @Override
@@ -51,11 +54,9 @@ public class ExpenseServlet extends HttpServlet {
                 }
                 expenses = expense != null ? List.of(expense) : Collections.emptyList();
             }
+            req.setAttribute("expenses", expenses);
+            req.getRequestDispatcher("/jsp/task15.jsp").forward(req,resp);
 
-            final PrintWriter out = resp.getWriter();
-            for (Expense expense : expenses) {
-                out.println("num="+ expense.getNum()+ " paydate="+expense.getPaydate()+" receiver="+expense.getReceiver()+" value="+expense.getValue());
-            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
