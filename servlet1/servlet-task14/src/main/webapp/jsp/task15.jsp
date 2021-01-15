@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Expenses</title>
+    <title>Task15 jsp</title>
 </head>
 <body>
 <%@page import ="it.academy.date.Expense" %>
