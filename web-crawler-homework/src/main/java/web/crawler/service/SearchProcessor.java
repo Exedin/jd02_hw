@@ -16,13 +16,15 @@ import org.jsoup.nodes.Element;
 
 
 public class SearchProcessor {
-    public static final Integer DEFAULT_LINK_DEEPS=1;
-    public static final Integer MAX_VISITED_PAGES_LIMIT=10000;
+    public static final Integer DEFAULT_LINK_DEEPS=2;
+    public static final Integer MAX_VISITED_PAGES_LIMIT=10;
 
     private final HttpLoader httpLoader = new HttpLoader();
+    private int visitedCounter=0;
 
     public ResultDto search(SearchDto searchDto) {
         int deepLevel=0;
+        visitedCounter++;
         //load string content by search URL
         String url=searchDto.getSeed();
         String content = httpLoader.get(searchDto.getSeed());
@@ -36,17 +38,12 @@ public class SearchProcessor {
         resultItemDto.setDeepLevel(deepLevel);
         resultDto.getResultItemDtoList().add(resultItemDto);
         final Set<String> href = resultItemDto.getHref();
-//        if (deepLevel<DEFAULT_LINK_DEEPS) {
-//            for (String s : href) {
-//            final ResultItemDto resultItemDto1 = parse(s, httpLoader.get(s), searchDto.getTerms());
-//            resultItemDto1.setDeepLevel(deepLevel+1);
-//            resultDto.getResultItemDtoList().add(resultItemDto1);
-//            }
-//        }
         deepLevel++;
             for (String s : href) {
                 searchDto.setSeed(s);
                 search(searchDto, deepLevel, resultDto);
+                visitedCounter++;
+                if (visitedCounter>MAX_VISITED_PAGES_LIMIT) break;
             }
 
         return resultDto;
@@ -68,33 +65,10 @@ public class SearchProcessor {
             for (String s : href) {
                 searchDto.setSeed(s);
                 search(searchDto, deepLevel, resultDto);
+                visitedCounter++;
+                if (visitedCounter>MAX_VISITED_PAGES_LIMIT) break;
             }
         }
-        // take recursion with parameter deep level
-//        final Set<String> href = resultItemDto.getHref();
-//        if (deepLevel<DEFAULT_LINK_DEEPS) {
-//            for (String s : href) {
-//            final ResultItemDto resultItemDto1 = parse(s, httpLoader.get(s), searchDto.getTerms());
-//            resultItemDto1.setDeepLevel(deepLevel+1);
-//            resultDto.getResultItemDtoList().add(resultItemDto1);
-//            }
-//        }
-
-
-
-
-
-//        if (deepLevel<DEFAULT_LINK_DEEPS) {
-//            final Set<String> href = resultItemDto.getHref();
-//            for (String s : href) {
-//                searchDto.setSeed(s);
-//                deepLevel++;
-//                resultDto = search(searchDto, deepLevel, resultDto);
-//            final ResultItemDto resultItemDto1 = parseWithHref(s, httpLoader.get(s), searchDto.getTerms());
-//            resultItemDto1.setDeepLevel(deepLevel+1);
-//            resultDto.getResultItemDtoList().add(resultItemDto1);
-//            }
-//        }
         return resultDto;
 
     }
@@ -112,8 +86,11 @@ public class SearchProcessor {
             }
             resultItemDto.getTermCountMap().put(term, count);
         }
-                Set<String> href = getHref(url);
-        resultItemDto.setHref(href);
+//        if (url!=null){
+            Set<String> href = getHref(url);
+            resultItemDto.setHref(href);
+//        }
+
 
         return resultItemDto;
     }
