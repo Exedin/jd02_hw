@@ -16,8 +16,8 @@ import org.jsoup.nodes.Element;
 
 
 public class SearchProcessor {
-    public static final Integer DEFAULT_LINK_DEEPS=2;
-    public static final Integer MAX_VISITED_PAGES_LIMIT=10;
+    public static final Integer DEFAULT_LINK_DEEPS=3;
+    public static final Integer MAX_VISITED_PAGES_LIMIT=150;
 
     private final HttpLoader httpLoader = new HttpLoader();
     private int visitedCounter=0;
@@ -86,10 +86,10 @@ public class SearchProcessor {
             }
             resultItemDto.getTermCountMap().put(term, count);
         }
-//        if (url!=null){
+        if (url!=null){
             Set<String> href = getHref(url);
             resultItemDto.setHref(href);
-//        }
+        }
 
 
         return resultItemDto;
@@ -100,16 +100,17 @@ public class SearchProcessor {
         Set<String> href = new HashSet<>();
         try {
             document = Jsoup.connect(url).get();
+            for (Element element : document.getElementsByTag("a")) {
+                if ((element.attr("href").contains("http")
+                        ||element.attr("href").contains("https"))
+                        &&href.size()<5){
+                    href.add(element.attr("href"));
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (Element element : document.getElementsByTag("a")) {
-            if ((element.attr("href").contains("http")
-                    ||element.attr("href").contains("https"))
-                    &&href.size()<5){
-                href.add(element.attr("href"));
-            }
-        }
+
 
         return href;
     }
