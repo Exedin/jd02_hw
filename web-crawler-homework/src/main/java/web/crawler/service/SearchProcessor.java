@@ -16,13 +16,13 @@ import org.jsoup.nodes.Element;
 
 
 public class SearchProcessor {
-    public static final Integer DEFAULT_LINK_DEEPS=3;
+    public static final Integer DEFAULT_LINK_DEEPS=1;
     public static final Integer MAX_VISITED_PAGES_LIMIT=10000;
 
     private final HttpLoader httpLoader = new HttpLoader();
-    private int deepCoutner=0;
 
-    public ResultDto search(SearchDto searchDto, int deepLevel) {
+    public ResultDto search(SearchDto searchDto) {
+        int deepLevel=0;
         //load string content by search URL
         String url=searchDto.getSeed();
         String content = httpLoader.get(searchDto.getSeed());
@@ -36,16 +36,65 @@ public class SearchProcessor {
         resultItemDto.setDeepLevel(deepLevel);
         resultDto.getResultItemDtoList().add(resultItemDto);
         final Set<String> href = resultItemDto.getHref();
-        if (deepLevel<DEFAULT_LINK_DEEPS) {
+//        if (deepLevel<DEFAULT_LINK_DEEPS) {
+//            for (String s : href) {
+//            final ResultItemDto resultItemDto1 = parse(s, httpLoader.get(s), searchDto.getTerms());
+//            resultItemDto1.setDeepLevel(deepLevel+1);
+//            resultDto.getResultItemDtoList().add(resultItemDto1);
+//            }
+//        }
+        deepLevel++;
             for (String s : href) {
-            final ResultItemDto resultItemDto1 = parseWithHref(s, httpLoader.get(s), searchDto.getTerms());
-            resultItemDto1.setDeepLevel(deepLevel+1);
-            resultDto.getResultItemDtoList().add(resultItemDto1);
+                searchDto.setSeed(s);
+                search(searchDto, deepLevel, resultDto);
+            }
+
+        return resultDto;
+
+    }
+
+    public ResultDto search(SearchDto searchDto, int deepLevel, ResultDto resultDto) {
+        //load string content by search URL
+        String url=searchDto.getSeed();
+        String content = httpLoader.get(searchDto.getSeed());
+
+        //TODO: Repeat parse to max 8 level
+        ResultItemDto resultItemDto = parse(url, content, searchDto.getTerms());
+        resultItemDto.setDeepLevel(deepLevel);
+        resultDto.getResultItemDtoList().add(resultItemDto);
+        if (deepLevel<DEFAULT_LINK_DEEPS) {
+            final Set<String> href = resultItemDto.getHref();
+            deepLevel++;
+            for (String s : href) {
+                searchDto.setSeed(s);
+                search(searchDto, deepLevel, resultDto);
             }
         }
-        for (ResultItemDto itemDto : resultDto.getResultItemDtoList()) {
-            System.out.println(itemDto);
-        }
+        // take recursion with parameter deep level
+//        final Set<String> href = resultItemDto.getHref();
+//        if (deepLevel<DEFAULT_LINK_DEEPS) {
+//            for (String s : href) {
+//            final ResultItemDto resultItemDto1 = parse(s, httpLoader.get(s), searchDto.getTerms());
+//            resultItemDto1.setDeepLevel(deepLevel+1);
+//            resultDto.getResultItemDtoList().add(resultItemDto1);
+//            }
+//        }
+
+
+
+
+
+//        if (deepLevel<DEFAULT_LINK_DEEPS) {
+//            final Set<String> href = resultItemDto.getHref();
+//            for (String s : href) {
+//                searchDto.setSeed(s);
+//                deepLevel++;
+//                resultDto = search(searchDto, deepLevel, resultDto);
+//            final ResultItemDto resultItemDto1 = parseWithHref(s, httpLoader.get(s), searchDto.getTerms());
+//            resultItemDto1.setDeepLevel(deepLevel+1);
+//            resultDto.getResultItemDtoList().add(resultItemDto1);
+//            }
+//        }
         return resultDto;
 
     }
@@ -66,23 +115,6 @@ public class SearchProcessor {
                 Set<String> href = getHref(url);
         resultItemDto.setHref(href);
 
-        return resultItemDto;
-    }
-
-
-    private ResultItemDto parseWithHref(String url, String sContent, List<String> terms) {
-        ResultItemDto resultItemDto=new ResultItemDto();
-        String content = sContent.toLowerCase();
-        resultItemDto.setSearchUrl(url);
-        for (String term:terms){
-            Pattern pattern=Pattern.compile(term);
-            Matcher matcher = pattern.matcher(content);
-            int count=0;
-            while (matcher.find()){
-                count++;
-            }
-            resultItemDto.getTermCountMap().put(term, count);
-        }
         return resultItemDto;
     }
 

@@ -28,7 +28,7 @@ public class SearchServlet extends HttpServlet {
         SearchDto searchDto= searchParamsBinder.bind(req);
 
         //Call search service and pass search model, return result model (processing)
-        ResultDto resultDto= searchProcessor.search(searchDto, 0);
+        ResultDto resultDto= searchProcessor.search(searchDto);
 
         //add result model to request scope and present result model on view (result.jsp)
         req.setAttribute("terms", searchDto.getTerms());
