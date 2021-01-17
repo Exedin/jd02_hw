@@ -16,8 +16,8 @@ import org.jsoup.nodes.Element;
 
 
 public class SearchProcessor {
-    public static final Integer DEFAULT_LINK_DEEPS=3;
-    public static final Integer MAX_VISITED_PAGES_LIMIT=150;
+    public static final Integer DEFAULT_LINK_DEEPS=4;
+    public static final Integer MAX_VISITED_PAGES_LIMIT=100;
 
     private final HttpLoader httpLoader = new HttpLoader();
     private int visitedCounter=0;
@@ -36,7 +36,7 @@ public class SearchProcessor {
         final ResultItemDto resultItemDto;
         resultItemDto= parse(url, content, searchDto.getTerms());
         resultItemDto.setDeepLevel(deepLevel);
-        resultDto.getResultItemDtoList().add(resultItemDto);
+        isAdd(resultDto, resultItemDto);
         final Set<String> href = resultItemDto.getHref();
         deepLevel++;
             for (String s : href) {
@@ -50,6 +50,12 @@ public class SearchProcessor {
 
     }
 
+    private boolean isAdd(ResultDto resultDto, ResultItemDto resultItemDto) {
+        synchronized (resultDto){
+            return resultDto.getResultItemDtoList().add(resultItemDto);
+        }
+    }
+
     public ResultDto search(SearchDto searchDto, int deepLevel, ResultDto resultDto) {
         //load string content by search URL
         String url=searchDto.getSeed();
@@ -58,7 +64,7 @@ public class SearchProcessor {
         //TODO: Repeat parse to max 8 level
         ResultItemDto resultItemDto = parse(url, content, searchDto.getTerms());
         resultItemDto.setDeepLevel(deepLevel);
-        resultDto.getResultItemDtoList().add(resultItemDto);
+        isAdd(resultDto, resultItemDto);
         if (deepLevel<DEFAULT_LINK_DEEPS) {
             final Set<String> href = resultItemDto.getHref();
             deepLevel++;
