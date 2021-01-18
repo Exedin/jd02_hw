@@ -17,14 +17,14 @@ import org.jsoup.nodes.Element;
 
 public class SearchProcessor {
     public static final Integer DEFAULT_LINK_DEEPS=4;
-    public static final Integer MAX_VISITED_PAGES_LIMIT=100;
+    public static final Integer MAX_VISITED_PAGES_LIMIT=50;
 
     private final HttpLoader httpLoader = new HttpLoader();
-    private int visitedCounter=0;
+    private int visitedCounter;
 
     public ResultDto search(SearchDto searchDto) {
         int deepLevel=0;
-        visitedCounter++;
+        visitedCounter=1;
         //load string content by search URL
         String url=searchDto.getSeed();
         String content = httpLoader.get(searchDto.getSeed());
@@ -33,11 +33,11 @@ public class SearchProcessor {
         ResultDto resultDto=new ResultDto();
 
         //TODO: Repeat parse to max 8 level
-        final ResultItemDto resultItemDto;
+        ResultItemDto resultItemDto;
         resultItemDto= parse(url, content, searchDto.getTerms());
         resultItemDto.setDeepLevel(deepLevel);
         isAdd(resultDto, resultItemDto);
-        final Set<String> href = resultItemDto.getHref();
+        Set<String> href = resultItemDto.getHref();
         deepLevel++;
             for (String s : href) {
                 searchDto.setSeed(s);
@@ -50,13 +50,13 @@ public class SearchProcessor {
 
     }
 
-    private boolean isAdd(ResultDto resultDto, ResultItemDto resultItemDto) {
-        synchronized (resultDto){
-            return resultDto.getResultItemDtoList().add(resultItemDto);
-        }
+    private void isAdd(ResultDto resultDto, ResultItemDto resultItemDto) {
+//        synchronized (resultDto){
+            resultDto.getResultItemDtoList().add(resultItemDto);
+//        }
     }
 
-    public ResultDto search(SearchDto searchDto, int deepLevel, ResultDto resultDto) {
+    public void search(SearchDto searchDto, int deepLevel, ResultDto resultDto) {
         //load string content by search URL
         String url=searchDto.getSeed();
         String content = httpLoader.get(searchDto.getSeed());
@@ -66,7 +66,7 @@ public class SearchProcessor {
         resultItemDto.setDeepLevel(deepLevel);
         isAdd(resultDto, resultItemDto);
         if (deepLevel<DEFAULT_LINK_DEEPS) {
-            final Set<String> href = resultItemDto.getHref();
+            Set<String> href = resultItemDto.getHref();
             deepLevel++;
             for (String s : href) {
                 searchDto.setSeed(s);
@@ -75,7 +75,6 @@ public class SearchProcessor {
                 if (visitedCounter>MAX_VISITED_PAGES_LIMIT) break;
             }
         }
-        return resultDto;
 
     }
 
@@ -102,7 +101,7 @@ public class SearchProcessor {
     }
 
     private Set<String> getHref(String url) {
-        Document document = null; // Can also take an URL.
+        Document document; // Can also take an URL.
         Set<String> href = new HashSet<>();
         try {
             document = Jsoup.connect(url).get();
