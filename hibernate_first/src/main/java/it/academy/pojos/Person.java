@@ -1,28 +1,23 @@
 package it.academy.pojos;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.io.Serializable;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 @Entity
-public class Person implements Serializable {
-
-
-
-    @GeneratedValue
+public class Person {
     @Id
+    @GeneratedValue
     private Integer id;
     @Column
     private Integer age;
@@ -31,6 +26,11 @@ public class Person implements Serializable {
     @Column
     private String surname;
 
-
+    @Override
+    public String toString() {
+        return  "id=" + id +
+                ", age=" + age +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'';
+    }
 }
-

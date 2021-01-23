@@ -12,6 +12,6 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-<!--        <mapping class="it.academy.pojos.Person"/>-->
+        <mapping class="it.academy.pojos.Person"/>
     </session-factory>
 </hibernate-configuration>

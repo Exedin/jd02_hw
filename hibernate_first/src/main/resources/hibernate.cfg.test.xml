@@ -1,7 +1,7 @@
 <hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
     <session-factory>
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost:3306/jpadb?createDatabaseIfNotExist=true&amp;serverTimezone=UTC
+            jdbc:mysql://localhost:3306/jpadb_test?createDatabaseIfNotExist=true&amp;serverTimezone=UTC
         </property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">root</property>
@@ -9,8 +9,8 @@
             com.mysql.cj.jdbc.Driver
         </property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL57Dialect</property>
-        <property name="hibernate.show_sql">false</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">create-drop</property>
 
         <mapping class="it.academy.pojos.Person"/>
     </session-factory>
