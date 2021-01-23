@@ -17,6 +17,9 @@ public class PersonLoader {
                 System.out.println("end - to finish app;" +
                         "\nadd - to create Person in database;" +
                         "\ndelete - to delete Person in database;"+
+                        "\nage - to update age Person in database;"+
+                        "\nname - to update name Person in database;"+
+                        "\nsurname - to update surname Person in database;"+
                         "\nfind - to find Person in database.");
             }
             if(s.equals("add")){
