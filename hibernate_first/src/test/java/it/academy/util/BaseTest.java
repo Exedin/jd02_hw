@@ -7,9 +7,6 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.ext.mysql.MySqlConnection;
 import org.dbunit.operation.DatabaseOperation;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.After;
 import org.junit.Before;
 
@@ -46,7 +43,7 @@ public abstract class BaseTest {
             if (connection == null) {
                 connection = new MySqlConnection(
                         MySqlDataSource.getTestConnection(),
-                        "shop_test");
+                        "jpadb_test");
             }
             dataSet = new FlatXmlDataSetBuilder().build(BaseTest.class
                     .getResourceAsStream(resourceName));
@@ -74,7 +71,7 @@ class MySqlDataSource {
     static {
         try {
             properties.load(MySqlDataSource.class
-                    .getResourceAsStream("/shop_test.ds.properties"));
+                    .getResourceAsStream("/hibernate_test.ds.properties"));
             Class.forName(properties.getProperty("jdbc.drivers"));
         } catch (ClassNotFoundException | IOException e) {
             log.log(Level.SEVERE, e.getMessage(), e);
