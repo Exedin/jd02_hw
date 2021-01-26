@@ -5,32 +5,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "T_PERSON")
 public class Person {
     @Id
     @GeneratedValue
+    @Column(name = "P_ID")
     private Integer id;
-    @Column
+    @Column(name = "P_AGE")
     private Integer age;
-    @Column
+    @Column(name = "P_NAME")
     private String name;
-    @Column
+    @Column(name = "P_SURNAME")
     private String surname;
 
-    @Override
-    public String toString() {
-        return  "id=" + id +
-                ", age=" + age +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'';
-    }
 }

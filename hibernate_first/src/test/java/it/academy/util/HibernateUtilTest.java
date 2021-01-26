@@ -7,14 +7,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 
 @FixMethodOrder
-public class HibernateUtilTest {
+public class HibernateUtilTest extends BaseTest {
 
-    private SessionFactory factory;
-
-    @Before
-    public void setUp() throws Exception {
-        HibernateUtil hibernateUtil = new HibernateUtil("hibernate.cfg.test.xml");
-    }
 
     @Test
     public void save() {
@@ -75,9 +69,4 @@ public class HibernateUtilTest {
         assertEquals("TestSurname", newSurname);
     }
 
-
-    @After
-    public void tearDown() throws Exception {
-        HibernateUtil.getSessionFactory().close();
-    }
 }
