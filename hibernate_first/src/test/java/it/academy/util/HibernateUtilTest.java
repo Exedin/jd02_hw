@@ -1,5 +1,6 @@
 package it.academy.util;
 
+import it.academy.pojos.Address;
 import it.academy.pojos.Person;
 import org.hibernate.SessionFactory;
 import org.junit.*;
@@ -13,7 +14,7 @@ public class HibernateUtilTest extends BaseTest {
     @Test
     public void save() {
         cleanInsert("PersonTest.xml");
-        Person person=new Person(1, 32, "Andrei", "TestSave");
+        Person person=new Person(1, 32, "Andrei", "TestSave",new Address("testStreet","testCity","TestCode"));
         Integer save = HibernateUtil.save(person);
         assertNotNull(save);
         deleteDataset();

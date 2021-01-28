@@ -29,7 +29,7 @@ public class PersonLoader {
                 String name = sc.next();
                 System.out.println("Enter surname Person:");
                 String surname = sc.next();
-                Person person=new Person(null, Integer.parseInt(age), name, surname);
+                Person person=new Person(null, Integer.parseInt(age), name, surname,null);
                 final Integer save = HibernateUtil.save(person);
                 System.out.println("Person was added with id="+save);
             }
