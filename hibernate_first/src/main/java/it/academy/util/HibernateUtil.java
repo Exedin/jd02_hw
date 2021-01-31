@@ -1,5 +1,6 @@
 package it.academy.util;
 
+import it.academy.pojos.Address;
 import it.academy.pojos.Person;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -72,6 +73,25 @@ public class HibernateUtil {
             tx = session.beginTransaction();
             Person person = session.get(Person.class, id);
             session.delete(person);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+    public static void delete() {
+        Session session = HibernateUtil.getSession();
+        Transaction tx = null;
+        Person person=new Person(1, 32, "Andrei", "TestSave",
+                new Address("testStreet","testCity","TestCode"));
+        Serializable save;
+        try {
+            tx = session.beginTransaction();
+            save = session.save(person);
+            Person personLoad = session.get(Person.class, save);
+            session.delete(personLoad);
             tx.commit();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
