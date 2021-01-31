@@ -1,6 +1,7 @@
 package it.academy.util;
 
 import it.academy.pojos.Address;
+import it.academy.pojos.Company;
 import it.academy.pojos.Person;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -43,7 +44,7 @@ public class HibernateUtil {
     public static Session getSession(){
         return sessionFactory.openSession();
     }
-    public static Integer save(Person person) {
+    public static Integer savePerson(Person person) {
         Session session = HibernateUtil.getSession();
         Transaction tx = null;
         Serializable save;
@@ -59,14 +60,36 @@ public class HibernateUtil {
         }
         return (Integer) save;
     }
+    public static Serializable saveCompany(Company company) {
+        Session session = HibernateUtil.getSession();
+        Transaction tx = null;
+        Serializable save;
+        try {
+            tx = session.beginTransaction();
+            save = session.save(company);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return save;
+    }
 
-    public static Person find(Integer id) {
+    public static Person findPerson(Integer id) {
         Session session = HibernateUtil.getSession();
         Person loadPerson = session.get(Person.class, id);
         session.close();
         return loadPerson;
     }
-    public static void delete(Integer id) {
+//    public static Company findCompany(Integer id) {
+//        Session session = HibernateUtil.getSession();
+//        Company loadCompany = session.get(Company.class, id);
+//        session.close();
+//        return loadCompany;
+//    }
+    public static void deletePerson(Integer id) {
         Session session = HibernateUtil.getSession();
         Transaction tx = null;
         try {
@@ -81,7 +104,22 @@ public class HibernateUtil {
             session.close();
         }
     }
-    public static void delete() {
+//    public static void deleteCompany(Integer id) {
+//        Session session = HibernateUtil.getSession();
+//        Transaction tx = null;
+//        try {
+//            tx = session.beginTransaction();
+//            Person person = session.get(Person.class, id);
+//            session.delete(person);
+//            tx.commit();
+//        } catch (Exception e) {
+//            if (tx != null) tx.rollback();
+//            throw e;
+//        } finally {
+//            session.close();
+//        }
+//    }
+    public static void deletePerson() {
         Session session = HibernateUtil.getSession();
         Transaction tx = null;
         Person person=new Person(1, 32, "Andrei", "TestSave",

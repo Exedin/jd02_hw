@@ -1,0 +1,10 @@
+<dataset>
+    <T_COMPANY ID="4028e49e774ab25a01774ab25be60000"
+               NAME="TestCompany"
+               BANK="testBank"
+               BANK_ACCOUNT="123ad123"/>
+
+<!--    # ID, CITY, POSTAL_CODE, STREET, BANK, BANK_ACCOUNT, NAME-->
+<!--    '4028e49e774ab25a01774ab25be60000', 'testCity', 'TestCode', 'testStreet', 'testBank', '123ad123', 'TestCompany'-->
+
+</dataset>

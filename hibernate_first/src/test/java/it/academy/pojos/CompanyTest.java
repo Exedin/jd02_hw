@@ -13,16 +13,16 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.Serializable;
 
-public class CompanyTest {
+public class CompanyTest extends BaseTest{
 
 
     @Test
     public void create(){
+        cleanInsert("CompanyTest.xml");
+        Session session = HibernateUtil.getSession();
 
-        Company company =new Company(null, "TestCompany","testBank","123ad123",
-                new Address("testStreet","testCity","TestCode"));
-        HibernateUtil hibernateUtil=new HibernateUtil("hibernate.cfg.test.xml");
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Company company =new Company(null, "TestCompany1","testBank1","123",
+                new Address("testStreet1","testCity1","TestCode1"));
         Transaction tx = null;
         Serializable id;
         try {
@@ -37,6 +37,7 @@ public class CompanyTest {
         }
         System.out.println(id);
         assertNotNull(id);
+        deleteDataset();
     }
 
 }

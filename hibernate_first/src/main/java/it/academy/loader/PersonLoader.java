@@ -1,7 +1,10 @@
 package it.academy.loader;
 
+import it.academy.pojos.Company;
 import it.academy.pojos.Person;
 import it.academy.util.HibernateUtil;
+
+import java.io.Serializable;
 import java.util.Scanner;
 
 
@@ -15,14 +18,18 @@ public class PersonLoader {
             String s = sc.nextLine();
             if (s.equals("help")){
                 System.out.println("end - to finish app;" +
-                        "\nadd - to create Person in database;" +
-                        "\ndelete - to delete Person in database;"+
+                        "\naddPerson - to create Person in database;" +
+                        "\ndeletePerson - to delete Person in database;"+
+                        "\nfindPerson - to find Person in databas;"+
+                        "\naddCompany - to create Company in database;" +
+//                        "\ndeleteCompany - to delete Company in database;"+
+//                        "\nfindCompany - to find Company in databas;"+
                         "\nage - to update age Person in database;"+
                         "\nname - to update name Person in database;"+
-                        "\nsurname - to update surname Person in database;"+
-                        "\nfind - to find Person in database.");
+                        "\nsurname - to update surname Person in database.");
+
             }
-            if(s.equals("add")){
+            if(s.equals("addPerson")){
                 System.out.println("Enter age Person:");
                 String age = sc.next();
                 System.out.println("Enter name Person:");
@@ -30,35 +37,67 @@ public class PersonLoader {
                 System.out.println("Enter surname Person:");
                 String surname = sc.next();
                 Person person=new Person(null, Integer.parseInt(age), name, surname,null);
-                final Integer save = HibernateUtil.save(person);
+                final Integer save = HibernateUtil.savePerson(person);
                 System.out.println("Person was added with id="+save);
             }
-            if (s.equals("find")){
+            if(s.equals("addCompany")){
+                System.out.println("Enter name Company:");
+                String name = sc.next();
+                System.out.println("Enter bank of Company:");
+                String bank = sc.next();
+                System.out.println("Enter bank account of Company:");
+                String bankAccount = sc.next();
+                Company company=new Company(null, name, bank, bankAccount,null);
+                final Serializable save = HibernateUtil.saveCompany(company);
+                System.out.println("Person was added with id="+save);
+            }
+
+            if (s.equals("findPerson")){
                 System.out.println("Enter id Person to find:");
                 String id = sc.next();
-                Person loadPerson = HibernateUtil.find(Integer.parseInt(id));
+                Person loadPerson = HibernateUtil.findPerson(Integer.parseInt(id));
                 if (loadPerson==null){
                     System.out.println("This Person is not exist");
                 }
                 else System.out.println(loadPerson);
             }
-            if (s.equals("delete")){
+//            if (s.equals("findCompany")){
+//                System.out.println("Enter id Company to find:");
+//                String id = sc.next();
+//                Company loadCompany = HibernateUtil.findCompany(Integer.parseInt(id));
+//                if (loadCompany==null){
+//                    System.out.println("This Company is not exist");
+//                }
+//                else System.out.println(loadCompany);
+//            }
+            if (s.equals("deletePerson")){
                 System.out.println("Enter id Person to delete:");
                 String id = sc.next();
-                Person loadPerson = HibernateUtil.find(Integer.parseInt(id));
+                Person loadPerson = HibernateUtil.findPerson(Integer.parseInt(id));
                 if (loadPerson==null){
                     System.out.println("This Person is not exist");
                 }
                 else {
-                    HibernateUtil.delete(Integer.parseInt(id));
+                    HibernateUtil.deletePerson(Integer.parseInt(id));
                     System.out.println("Person id="+id+" was delete");}
             }
+//            if (s.equals("deleteCompany")){
+//                System.out.println("Enter id Company to delete:");
+//                String id = sc.next();
+//                Person loadPerson = HibernateUtil.findPerson(Integer.parseInt(id));
+//                if (loadPerson==null){
+//                    System.out.println("This Company is not exist");
+//                }
+//                else {
+//                    HibernateUtil.deletePerson(Integer.parseInt(id));
+//                    System.out.println("Company id="+id+" was delete");}
+//            }
             if (s.equals("age")){
                 System.out.println("Enter id Person to update age:");
                 String id = sc.next();
                 System.out.println("Enter age Person:");
                 String age = sc.next();
-                Person loadPerson = HibernateUtil.find(Integer.parseInt(id));
+                Person loadPerson = HibernateUtil.findPerson(Integer.parseInt(id));
                 if (loadPerson==null){
                     System.out.println("This Person is not exist");
                 }
@@ -71,7 +110,7 @@ public class PersonLoader {
                 String id = sc.next();
                 System.out.println("Enter name Person:");
                 String name = sc.next();
-                Person loadPerson = HibernateUtil.find(Integer.parseInt(id));
+                Person loadPerson = HibernateUtil.findPerson(Integer.parseInt(id));
                 if (loadPerson==null){
                     System.out.println("This Person is not exist");
                 }
@@ -84,7 +123,7 @@ public class PersonLoader {
                 String id = sc.next();
                 System.out.println("Enter surname Person:");
                 String surname = sc.next();
-                Person loadPerson = HibernateUtil.find(Integer.parseInt(id));
+                Person loadPerson = HibernateUtil.findPerson(Integer.parseInt(id));
                 if (loadPerson==null){
                     System.out.println("This Person is not exist");
                 }
