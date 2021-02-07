@@ -27,8 +27,4 @@ public class RequestHeader extends HttpServlet {
         out.println("Приветсвую пользователя " + browserName + " - version " + browserVersion);
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req,resp);
-    }
 }
