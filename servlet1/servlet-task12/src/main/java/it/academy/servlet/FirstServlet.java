@@ -34,9 +34,5 @@ public class FirstServlet extends HttpServlet {
             bufferedWriter.write(num);
         }
     }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req,resp);
-    }
 }
+
