@@ -14,5 +14,7 @@
 
 
         <mapping class="it.academy.pojos.Person"/>
+        <mapping class="it.academy.pojos.Employeer"/>
+        <mapping class="it.academy.pojos.Student"/>
     </session-factory>
 </hibernate-configuration>

@@ -42,91 +42,91 @@ public class HibernateUtil {
     public static Session getSession(){
         return sessionFactory.openSession();
     }
-    public static Integer save(Person person) {
-        Session session = HibernateUtil.getSession();
-        Transaction tx = null;
-        Serializable save;
-        try {
-            tx = session.beginTransaction();
-            save = session.save(person);
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null) tx.rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
-        return (Integer) save;
-    }
-
-    public static Person find(Integer id) {
-        Session session = HibernateUtil.getSession();
-        Person loadPerson = session.get(Person.class, id);
-        session.close();
-        return loadPerson;
-    }
-    public static void delete(Integer id) {
-        Session session = HibernateUtil.getSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            Person person = session.get(Person.class, id);
-            session.delete(person);
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null) tx.rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
-    }
-    public static void updateAge(Integer id, Integer age) {
-        Session session = HibernateUtil.getSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            Person person = session.get(Person.class, id);
-            person.setAge(age);
-            session.flush();
-
-        } catch (Exception e) {
-            if (tx != null) tx.rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
-    }
-    public static void updateName(Integer id, String name) {
-        Session session = HibernateUtil.getSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            Person person = session.get(Person.class, id);
-            person.setName(name);
-            session.flush();
-
-        } catch (Exception e) {
-            if (tx != null) tx.rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
-    }
-    public static void updateSurname(Integer id, String name) {
-        Session session = HibernateUtil.getSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            Person person = session.get(Person.class, id);
-            person.setSurname(name);
-            session.flush();
-
-        } catch (Exception e) {
-            if (tx != null) tx.rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
-    }
+//    public static Integer save(Person person) {
+//        Session session = HibernateUtil.getSession();
+//        Transaction tx = null;
+//        Serializable save;
+//        try {
+//            tx = session.beginTransaction();
+//            save = session.save(person);
+//            tx.commit();
+//        } catch (Exception e) {
+//            if (tx != null) tx.rollback();
+//            throw e;
+//        } finally {
+//            session.close();
+//        }
+//        return (Integer) save;
+//    }
+//
+//    public static Person find(Integer id) {
+//        Session session = HibernateUtil.getSession();
+//        Person loadPerson = session.get(Person.class, id);
+//        session.close();
+//        return loadPerson;
+//    }
+//    public static void delete(Integer id) {
+//        Session session = HibernateUtil.getSession();
+//        Transaction tx = null;
+//        try {
+//            tx = session.beginTransaction();
+//            Person person = session.get(Person.class, id);
+//            session.delete(person);
+//            tx.commit();
+//        } catch (Exception e) {
+//            if (tx != null) tx.rollback();
+//            throw e;
+//        } finally {
+//            session.close();
+//        }
+//    }
+//    public static void updateAge(Integer id, Integer age) {
+//        Session session = HibernateUtil.getSession();
+//        Transaction tx = null;
+//        try {
+//            tx = session.beginTransaction();
+//            Person person = session.get(Person.class, id);
+//            person.setAge(age);
+//            session.flush();
+//
+//        } catch (Exception e) {
+//            if (tx != null) tx.rollback();
+//            throw e;
+//        } finally {
+//            session.close();
+//        }
+//    }
+//    public static void updateName(Integer id, String name) {
+//        Session session = HibernateUtil.getSession();
+//        Transaction tx = null;
+//        try {
+//            tx = session.beginTransaction();
+//            Person person = session.get(Person.class, id);
+//            person.setName(name);
+//            session.flush();
+//
+//        } catch (Exception e) {
+//            if (tx != null) tx.rollback();
+//            throw e;
+//        } finally {
+//            session.close();
+//        }
+//    }
+//    public static void updateSurname(Integer id, String name) {
+//        Session session = HibernateUtil.getSession();
+//        Transaction tx = null;
+//        try {
+//            tx = session.beginTransaction();
+//            Person person = session.get(Person.class, id);
+//            person.setSurname(name);
+//            session.flush();
+//
+//        } catch (Exception e) {
+//            if (tx != null) tx.rollback();
+//            throw e;
+//        } finally {
+//            session.close();
+//        }
+//    }
 
 }
