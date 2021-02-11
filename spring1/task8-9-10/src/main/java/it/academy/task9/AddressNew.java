@@ -1,6 +1,6 @@
 package it.academy.task9;
 
-import it.academy.task8_9_10.IAddress;
+import it.academy.task8_10.IAddress;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

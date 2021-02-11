@@ -1,6 +1,6 @@
 package it.academy.main;
 
-import it.academy.task8_9_10.Person;
+import it.academy.task8_10.Person;
 import it.academy.task9.TestAnnotation;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
