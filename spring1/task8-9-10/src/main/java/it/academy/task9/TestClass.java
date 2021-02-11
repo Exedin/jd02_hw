@@ -1,4 +1,4 @@
-package it.academy.annotation;
+package it.academy.task9;
 
 import it.academy.task8_9_10.Address;
 import lombok.AllArgsConstructor;
@@ -12,9 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @NoArgsConstructor
 @AllArgsConstructor
 @TestAnnotation
-public class testClass {
-    @Autowired
-    private Address address;
+public class TestClass {
+    private String id;
 }
 
 

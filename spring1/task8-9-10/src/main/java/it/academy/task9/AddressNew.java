@@ -1,8 +1,10 @@
-package it.academy.task8_9_10;
+package it.academy.task9;
 
+import it.academy.task8_9_10.IAddress;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
@@ -22,4 +24,6 @@ public class AddressNew implements IAddress {
     @Value("${address.country}")
     private String country;
     private String email;
+    @Autowired
+    private TestClass testClass;
 }
