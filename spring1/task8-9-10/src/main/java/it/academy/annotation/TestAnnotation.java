@@ -1,4 +1,4 @@
-package it.academy.task9;
+package it.academy.annotation;
 
 
 import org.springframework.beans.factory.annotation.Qualifier;
