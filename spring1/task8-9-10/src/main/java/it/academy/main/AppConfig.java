@@ -21,5 +21,7 @@ public class AppConfig {
         Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
         Person person=context.getBean("person", Person.class);
         System.out.println(person);
+
+        context.close();
     }
 }
