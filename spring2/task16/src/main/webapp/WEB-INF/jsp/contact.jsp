@@ -5,7 +5,7 @@
 </head>
 <body>
 <h2>Contact Manager</h2>
-<form action="/web/contact/add" method="post">
+<form action="addContact.html" method="post">
     <label for="name">Contact name:</label><br>
     <input type="text" id="name" name="contact.firstname" value=""><br>
     <label for="lastname">Contact lastname:</label><br>

@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 @SessionAttributes
 public class ContactController {
 
-    @RequestMapping(value = "/contact/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/addContact", method = RequestMethod.POST)
     public String addContact(@ModelAttribute("contact") Contact contact, BindingResult result) {
         //write the code here to add contact
         return "redirect:contact.html";
