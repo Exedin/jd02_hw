@@ -17,4 +17,5 @@
             </list>
         </property>
     </bean>
+<!--    <bean id="contact" class="it.academy.model.Contact"/>-->
 </beans>
