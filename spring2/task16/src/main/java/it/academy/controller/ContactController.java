@@ -12,11 +12,16 @@ import java.util.logging.Logger;
 @Controller
 @SessionAttributes
 public class ContactController {
-
-    @RequestMapping(value = "/addContact", method = RequestMethod.POST)
-    public String addContact(@ModelAttribute("contact") Contact contact, BindingResult result) {
+    public static final Logger log =
+            Logger.getLogger(ContactController.class.getName());
+    @Autowired
+    ContactService contactService;
+    @RequestMapping(value = "/addContact")
+    public String addContact(@ModelAttribute Contact contact) {
+        log.info(String.format("New contact: %s", contact));
+        contactService.addContact(contact);
         //write the code here to add contact
-        return "redirect:contact.html";
+        return "contactAdded";
     }
 
     @RequestMapping("/contact")

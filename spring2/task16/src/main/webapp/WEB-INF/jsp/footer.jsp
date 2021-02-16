@@ -1,2 +1,2 @@
 <hr/>    
-<p>my Footer</p>
+<p>it.academy 2021</p>

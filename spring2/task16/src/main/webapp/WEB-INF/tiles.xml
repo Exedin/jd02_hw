@@ -20,9 +20,9 @@
         <put-attribute name="title" value="Hello Spring MVC" />
         <put-attribute name="body" value="/WEB-INF/jsp/hello.jsp" />
     </definition>
-    <definition name="addContact" extends="base.definition">
+    <definition name="contactAdded" extends="base.definition">
         <put-attribute name="title" value="Contact was added" />
-        <put-attribute name="body" value="/WEB-INF/jsp/contact.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/contactAdd.jsp" />
     </definition>
 
 
